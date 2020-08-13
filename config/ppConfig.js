@@ -9,14 +9,16 @@ passport.serializeUser((user,cb)=> {
 })
 
 // passport "deserializeUser" is going to take the id and look that up in the database
-passport.deserializeUser((id,cb)=> {
-    cb(null, id)
-    .catch(cb());
-})
+passport.deserializeUser((id, cb) => {
+    db.user.findByPk(id)
+    .then(user => {
+        cb(null, user)
+    }).catch(cb);
+});
 
 passport.use(new localStrategy({
     usernameField: 'email',
-    password: 'password'
+    passwordField: 'password'
 }, (email,password,cb) => {
     db.user.findOne({
         where: {email}
@@ -25,10 +27,10 @@ passport.use(new localStrategy({
         if (!user || !user.validPassword(password)) {
             cb(null, false)
         } else {
-            cb(null, false)
+            cb(null, user)
         }
     })
-    .catch(cb());
+    .catch(cb);
 }
 ))
 
