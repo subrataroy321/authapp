@@ -1,14 +1,16 @@
 
 <% // error alert %> 
 <% if(alerts.error) { %>
-    <% alerts.error.forEach(eachError => { %>
+    <% console.log(alerts.error) %> 
+    <% alerts.error.forEach(msg=> { %>
         <div class="alert alert-error"><%= msg %> </div>
     <% }) %> 
 <% } %> 
 
 <% // success alert %> 
 <% if(alerts.success) { %>
-    <% alerts.success.forEach(eachSuccess => { %>
+    <% console.log(alerts.success) %> 
+    <% alerts.success.forEach(msg => { %>
         <div class="alert alert-success"><%= msg %> </div>
     <% }) %> 
 <% } %> 
