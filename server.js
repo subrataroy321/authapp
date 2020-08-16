@@ -31,7 +31,7 @@ app.use(flash());
 
 // middleware to have our messages accessible for every view
 app.use((req,res,next)=> {
-  console.log(req.flash());
+  // console.log(req.flash());
   // before every route, we will attached our current user to res.local
   res.locals.alerts = req.flash();
   res.locals.currentUser = req.user;
@@ -51,7 +51,7 @@ app.get('/profile', isLoggedIn, (req, res) => {
 app.use('/auth', require('./routes/auth'));
 
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 const server = app.listen(port, () => {
   console.log(`🎧 You're listening to the smooth sounds of port ${port} 🎧`);
 });
